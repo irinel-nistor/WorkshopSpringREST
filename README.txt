@@ -1,0 +1,1 @@
+This workshop demonstrates how to use Spring REST web services using AJAX (hopefully)
