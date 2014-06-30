@@ -4,6 +4,9 @@
 **/*.jar
 **/*.war
 
+# Maven
+**/target/*
+
 # Intellij IDEA 
 **/*.iml
 **/.idea/
