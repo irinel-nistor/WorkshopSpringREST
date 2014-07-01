@@ -9,16 +9,16 @@ public enum Size {
 
     private String value;
 
-    Size(String value){
+    Size(String value) {
         this.value = value;
     }
 
-    public String getValue(){
+    public String getValue() {
         return value;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return getValue();
     }
 }

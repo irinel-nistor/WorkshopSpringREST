@@ -10,15 +10,15 @@ public enum Color {
 
     private String value;
 
-    Color(String value){
+    Color(String value) {
         this.value = value;
     }
 
-    private String getValue(){
+    private String getValue() {
         return value;
     }
 
-    public String toString(){
+    public String toString() {
         return getValue();
     }
 }
