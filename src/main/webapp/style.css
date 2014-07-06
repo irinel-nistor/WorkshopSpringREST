@@ -1,0 +1,67 @@
+body{
+	margin: 0;
+	background: #eee;
+	font-family: sans-serif;
+}
+
+#container
+{
+	margin: 0 auto;
+	width: 100%;
+	background: #fff;
+}
+
+#header
+{
+	background: #dfd;
+	padding: 20px;
+}
+
+#header h1 { margin: 0; }
+
+#status
+{
+	float: left;
+	width: 100%;
+	padding: 0 10px 0 10px;
+	background: #ccc;
+}
+
+#content-container
+{
+	float: left;
+	width: 100%;
+	background: #FFF;
+}
+
+#content
+{
+	clear: left;
+	float: left;
+	width: 51%;
+	padding: 20px 0;
+	margin: 0 0 0 4%;
+	display: inline;
+	background: #eee;
+}
+
+#content h2 { margin: 0; }
+
+#aside
+{
+	float: right;
+	width: 35%;
+	padding: 20px 0;
+	margin: 0 3% 0 0;
+	display: inline;
+	background: #eee;
+}
+
+#footer
+{
+	clear: left;
+	background: #ccc;
+	text-align: right;
+	padding: 20px;
+	height: 1%;
+}
