@@ -57,12 +57,27 @@ public class OrdersController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Order> createOrder(@RequestBody Order order, UriComponentsBuilder builder) {
+        if (order.getId() == null){
+            String newResourceId = saveOrder(order);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setLocation(
+                    builder.path("/api/orders/{id}")
+                            .buildAndExpand(newResourceId).toUri());
+            return new ResponseEntity<Order>(order, HttpStatus.CREATED);
+        }else {
+            return new ResponseEntity<Order>(HttpStatus.CONFLICT);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Order> updateOrder(@RequestBody Order order) {
+        saveOrder(order);
+        return new ResponseEntity<Order>(order, HttpStatus.OK);
+    }
+
+    private String saveOrder(Order order){
         ro.workshop.core.domain.Order toSave = Functions.toCore.order().apply(order);
         ro.workshop.core.domain.Order saved = orderService.save(toSave);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(
-                builder.path("/api/orders/{id}")
-                        .buildAndExpand(saved.getId()).toUri());
-        return new ResponseEntity<Order>(order, HttpStatus.CREATED);
+        return saved.getId().toString();
     }
 }
