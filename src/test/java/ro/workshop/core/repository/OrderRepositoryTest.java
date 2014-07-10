@@ -1,4 +1,4 @@
-package ro.workshop.core;
+package ro.workshop.core.repository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,17 +7,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import ro.workshop.core.config.JPAConfiguration;
 import ro.workshop.core.domain.*;
-import ro.workshop.core.repository.OrderRepository;
-
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JPAConfiguration.class})
+@ContextConfiguration(locations = {"/applicationContext.xml"})
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
 public class OrderRepositoryTest {
@@ -34,15 +30,13 @@ public class OrderRepositoryTest {
 
     @Test
     public void testInsertIntoRepo(){
-        PrintStatus printStatus = new PrintStatus();
-        printStatus.setMessage("Printed");
         OrderDetails orderDetails = new OrderDetails();
         orderDetails.setMessage("bullcr@p");
         orderDetails.setSize(Size.LARGE);
         orderDetails.setColor(Color.BLUE);
         Order order = new Order();
         order.setDetails(orderDetails);
-        order.setStatus(printStatus);
+        order.setStatus(PrintStatus.WAITING);
         repository.save(order);
 
         Order retrieved = repository.findOne(order.getId());
@@ -50,6 +44,6 @@ public class OrderRepositoryTest {
         assertNotNull(retrieved.getDetails());
         assertNotNull(retrieved.getStatus());
         assertEquals(retrieved.getDetails().getMessage(), orderDetails.getMessage());
-        assertEquals(retrieved.getStatus().getMessage(), printStatus.getMessage());
+        assertEquals(retrieved.getStatus(), order.getStatus());
     }
 }

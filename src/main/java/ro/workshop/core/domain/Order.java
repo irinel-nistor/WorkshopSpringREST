@@ -2,7 +2,7 @@ package ro.workshop.core.domain;
 
 import javax.persistence.*;
 
-@Entity(name = "ORDERS")
+@Entity(name = "PRINT_ORDER")
 public class Order {
 
     @Id
@@ -11,8 +11,8 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "id_details")
     private OrderDetails details;
-    @OneToOne
-    @JoinColumn(name = "id_status")
+    @Column
+    @Enumerated(EnumType.STRING)
     private PrintStatus status;
 
     public Long getId() {
@@ -35,7 +35,7 @@ public class Order {
         return status;
     }
 
-    public void setStatus(PrintStatus status) {
-        this.status = status;
+    public void setStatus(PrintStatus printStatus) {
+        this.status = printStatus;
     }
 }

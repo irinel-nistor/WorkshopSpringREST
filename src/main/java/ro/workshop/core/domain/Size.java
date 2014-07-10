@@ -4,7 +4,8 @@ public enum Size {
     SMALL("S"),
     MEDIUM("M"),
     LARGE("L"),
-    EXTRA_LARGE("XL");
+    EXTRA_LARGE("XL"),
+    EXTRA_EXTRA_LARGE("XXL");
 
 
     private String value;

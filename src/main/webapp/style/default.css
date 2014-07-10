@@ -1,6 +1,6 @@
 body{
 	margin: 0;
-	background: #eee;
+	background: #fff;
 	font-family: sans-serif;
 }
 
@@ -13,19 +13,13 @@ body{
 
 #header
 {
-	background: #dfd;
+    color: #FFF;
+	background: #888;
 	padding: 20px;
+	border-bottom: 1px solid #DADADA;
 }
 
-#header h1 { margin: 0; }
-
-#status
-{
-	float: left;
-	width: 100%;
-	padding: 0 10px 0 10px;
-	background: #ccc;
-}
+#header h1 { margin: 0; text-align: center;}
 
 #content-container
 {
@@ -38,11 +32,9 @@ body{
 {
 	clear: left;
 	float: left;
-	width: 51%;
+	width: 50%;
 	padding: 20px 0;
-	margin: 0 0 0 4%;
 	display: inline;
-	background: #eee;
 }
 
 #content h2 { margin: 0; }
@@ -50,11 +42,9 @@ body{
 #aside
 {
 	float: right;
-	width: 35%;
+	width: 50%;
 	padding: 20px 0;
-	margin: 0 3% 0 0;
 	display: inline;
-	background: #eee;
 }
 
 #footer
@@ -64,4 +54,9 @@ body{
 	text-align: right;
 	padding: 20px;
 	height: 1%;
+}
+
+div .order{
+	font-size: 16px;
+	padding-bottom: 10px;
 }

@@ -1,8 +1,7 @@
-package ro.workshop.core.config;
+package ro.workshop.config;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -10,14 +9,15 @@ import org.springframework.transaction.annotation.Transactional;
 import ro.workshop.core.fixture.JPAAssertions;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JPAConfiguration.class})
+@ContextConfiguration(locations = {"/testApplicationContext.xml"})
 @Transactional
 @TransactionConfiguration(defaultRollback = true)
-public class JPAConfigurationTest {
+public class XMLConfigurationTest {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Test

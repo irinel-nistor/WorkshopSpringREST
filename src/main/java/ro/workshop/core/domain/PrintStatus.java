@@ -1,39 +1,21 @@
 package ro.workshop.core.domain;
 
-import javax.persistence.*;
+public enum PrintStatus {
+    PRINTING("printing"),
+    PRINTED("printed"),
+    WAITING("waiting");
 
-@Entity(name = "PRINT_STATUS")
-public class PrintStatus {
+    private String value;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column
-    private String message;
-    @OneToOne(mappedBy = "status")
-    private Order order;
-
-    public Long getId() {
-        return id;
+    PrintStatus(String value) {
+        this.value = value;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    private String getValue() {
+        return value;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+    public String toString() {
+        return getValue();
     }
 }
