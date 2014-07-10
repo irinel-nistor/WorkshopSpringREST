@@ -8,6 +8,6 @@
 
     <context:component-scan base-package="ro.workshop.rest.controller" />
 
-    <import resource="classpath*:applicationContext.xml" />
+    <import resource="applicationContext.xml" />
 
 </beans>
