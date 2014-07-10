@@ -28,16 +28,15 @@ public class OrderService {
         return ImmutableList.copyOf(orderRepository.findAll());
     }
 
+    public boolean exists(Long id){
+        return orderRepository.exists(id);
+    }
+
     public Order find(Long id) {
         return orderRepository.findOne(id);
     }
 
-    public boolean delete(Long id) {
-        if (orderRepository.exists(id)) {
-            orderRepository.delete(id);
-            return true;
-        } else {
-            return false;
-        }
+    public void delete(Long id) {
+        orderRepository.delete(id);
     }
 }

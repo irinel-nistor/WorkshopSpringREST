@@ -31,10 +31,16 @@ public class OrdersController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<Order> deleteOrder(@PathVariable String id) {
-        ro.workshop.core.domain.Order one = orderService.find(Long.valueOf(id));
-        orderService.delete(Long.valueOf(id));
-        Order response = Functions.toRest.order().apply(one);
-        return new ResponseEntity<Order>(response, HttpStatus.OK);
+        Long orderId = Long.valueOf(id);
+
+        if (!orderService.exists(orderId)){
+            return new ResponseEntity<Order>(HttpStatus.NOT_FOUND);
+        }else{
+            ro.workshop.core.domain.Order deleted = orderService.find(Long.valueOf(id));
+            Order response = Functions.toRest.order().apply(deleted);
+            orderService.delete(orderId);
+            return new ResponseEntity<Order>(response, HttpStatus.OK);
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST)
