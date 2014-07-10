@@ -1,4 +1,5 @@
 var orderFormat = '<li><div class="order"><span><strong>%s</strong> tshirt of size <strong>%s</strong> with message \'<em>%s</em>\'</span> <input type="button" id="delete-%d" class="small-button" value="Remove" /></div></li>';
+var refreshTimout = 1000;
 
 $(document).ready(function(){
     loadOrders();
@@ -11,7 +12,8 @@ $(document).ready(function(){
             },
             type: "POST",
             dataType: "json",
-            data: JSON.stringify(createOrder())
+            data: JSON.stringify(createOrder()),
+            success: function(){loadOrders()}
         });
         e.preventDefault();
     });
@@ -20,7 +22,7 @@ $(document).ready(function(){
 function refreshOrders(){
     setTimeout(function(){
 		loadOrders();
-    }, 2000);
+    }, refreshTimout);
 }
 
 function loadOrders(){
@@ -51,7 +53,8 @@ function deleteOrder(id){
     $.ajax({
         url: sprintf("http://localhost:8080/workshop/api/orders/%d", id),
         type: "DELETE",
-        dataType: "json"
+        dataType: "json",
+        success: function(){loadOrders()}
     });
 }
 

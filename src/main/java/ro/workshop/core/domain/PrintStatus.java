@@ -1,5 +1,7 @@
 package ro.workshop.core.domain;
 
+import java.util.Random;
+
 public enum PrintStatus {
     PRINTING("printing"),
     PRINTED("printed"),
@@ -17,5 +19,17 @@ public enum PrintStatus {
 
     public String toString() {
         return getValue();
+    }
+
+    public static PrintStatus getRandom(){
+        int random = new Random().nextInt(3);
+        switch (random){
+            case 0:
+                return PRINTING;
+            case 1:
+                return PRINTED;
+            default:
+                return WAITING;
+        }
     }
 }

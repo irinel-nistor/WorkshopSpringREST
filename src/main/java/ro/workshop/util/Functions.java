@@ -59,7 +59,7 @@ public class Functions {
             Order transformed = new Order();
             transformed.setId(source.getId());
             transformed.setDetails(new OrderDetails());
-            fillInDefaultsIfNeeded(source);
+            fillInNulls(source);
             transformed.setStatus(PrintStatus.valueOf(source.getStatus().toUpperCase()));
             transformed.getDetails().setMessage(source.getMessage());
             transformed.getDetails().setColor(Color.valueOf(source.getColor().toUpperCase()));
@@ -67,15 +67,15 @@ public class Functions {
             return transformed;
         }
 
-        private void fillInDefaultsIfNeeded(ro.workshop.rest.domain.Order order){
+        private void fillInNulls(ro.workshop.rest.domain.Order order){
             if (Strings.isNullOrEmpty(order.getStatus())){
-                order.setStatus(PrintStatus.WAITING.toString());
+                order.setStatus(PrintStatus.getRandom().toString());
             }
             if (Strings.isNullOrEmpty(order.getColor())){
-                order.setStatus(Color.BLUE.toString());
+                order.setStatus(Color.getRandom().toString());
             }
             if (Strings.isNullOrEmpty(order.getSize())){
-                order.setStatus(Size.MEDIUM.toString());
+                order.setStatus(Size.getRandom().toString());
             }
         }
     }

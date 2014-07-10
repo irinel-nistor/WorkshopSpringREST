@@ -60,3 +60,10 @@ div .order{
 	font-size: 16px;
 	padding-bottom: 10px;
 }
+
+#recentOrder ul{
+    list-style-type: none;
+}
+#recentOrder li{
+    border-bottom: 1px solid #E4E4E4;
+}
