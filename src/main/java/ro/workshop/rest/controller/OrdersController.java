@@ -33,13 +33,25 @@ public class OrdersController {
     public ResponseEntity<Order> deleteOrder(@PathVariable String id) {
         Long orderId = Long.valueOf(id);
 
-        if (!orderService.exists(orderId)){
-            return new ResponseEntity<Order>(HttpStatus.NOT_FOUND);
-        }else{
+        if (orderService.exists(orderId)){
             ro.workshop.core.domain.Order deleted = orderService.find(Long.valueOf(id));
             Order response = Functions.toRest.order().apply(deleted);
             orderService.delete(orderId);
             return new ResponseEntity<Order>(response, HttpStatus.OK);
+        }else{
+
+            return new ResponseEntity<Order>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ResponseEntity<Order> viewOrder(@PathVariable String id){
+        Long orderId = Long.valueOf(id);
+        if (orderService.exists(orderId)){
+            Order restOrder = Functions.toRest.order().apply(orderService.find(orderId));
+            return new ResponseEntity<Order>(restOrder, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<Order>(HttpStatus.NOT_FOUND);
         }
     }
 
