@@ -31,7 +31,7 @@ public class OrdersController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public ResponseEntity<Order> deleteOrder(@PathVariable String id) {
+    public ResponseEntity<Order> deleteOrder(@PathVariable("id") String id) {
         Long orderId = Long.valueOf(id);
 
         if (orderService.exists(orderId)){
@@ -46,7 +46,7 @@ public class OrdersController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ResponseEntity<Order> viewOrder(@PathVariable String id){
+    public ResponseEntity<Order> viewOrder(@PathVariable("id") String id){
         Long orderId = Long.valueOf(id);
         if (orderService.exists(orderId)){
             Order restOrder = Functions.toRest.order().apply(orderService.find(orderId));
