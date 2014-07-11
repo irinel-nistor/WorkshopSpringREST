@@ -1,7 +1,5 @@
 package ro.workshop.rest.controller;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,6 +13,9 @@ import ro.workshop.util.Functions;
 
 import java.util.List;
 
+import static com.google.common.collect.ImmutableList.copyOf;
+import static com.google.common.collect.Iterables.transform;
+
 @Controller
 @RequestMapping("/orders")
 public class OrdersController {
@@ -26,7 +27,7 @@ public class OrdersController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public List<Order> getAllOrders() {
-        return ImmutableList.copyOf(Iterables.transform(orderService.findAll(), Functions.toRest.order()));
+        return copyOf(transform(orderService.findAll(), Functions.toRest.order()));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
